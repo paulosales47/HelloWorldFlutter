@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Meu primeiro App'),
+      home: MyHomePage(title: 'Frases do dia'),
     );
   }
 }
@@ -44,16 +46,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
+  int _numeroAleatorio = 0;
+  List _frases = [
+    "Daria tudo que sei pela metade do que ignoro.",
+    "Eu não sei o que quero ser, mas sei muito bem o que não quero me tornar",
+    "Felicidade é ter algo que fazer, ter algo que amar e algo que esperar...",
+    "Acredite em milagres, mas não dependa deles.",
+  ];
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _numeroAleatorio = new Random().nextInt(4);
+
+
     });
   }
 
@@ -92,10 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'O botão foi pressionado:',
+              'Pressione o botão para gerar uma frase:',
             ),
             Text(
-              '$_counter',
+              _frases[_numeroAleatorio],
               style: Theme.of(context).textTheme.display1,
             ),
           ],
@@ -104,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add_comment),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
